@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="12" passed="9" failed="3" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-06-01T11:20:20 EDT" name="ParallelRegistrationSuite" finished-at="2026-06-01T11:20:53 EDT" duration-ms="32928">
+    <groups>
+    </groups>
+    <test started-at="2026-06-01T11:20:20 EDT" name="ChromeTests" finished-at="2026-06-01T11:20:32 EDT" duration-ms="12687">
+      <class name="com.amalw.tests.RegistrationTest">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.amalw.tests.RegistrationTest@30f74e79]" started-at="2026-06-01T11:20:21 EDT" name="setUp" finished-at="2026-06-01T11:20:24 EDT" duration-ms="3661" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.amalw.tests.RegistrationTest@30f74e79]" started-at="2026-06-01T11:20:21 EDT" name="setUp" finished-at="2026-06-01T11:20:24 EDT" duration-ms="3657" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.amalw.tests.RegistrationTest@30f74e79]" started-at="2026-06-01T11:20:21 EDT" name="setUp" finished-at="2026-06-01T11:20:24 EDT" duration-ms="3657" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.amalw.tests.RegistrationTest@30f74e79]" started-at="2026-06-01T11:20:21 EDT" name="setUp" finished-at="2026-06-01T11:20:24 EDT" duration-ms="3660" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testRegistration(com.amalw.model.User,com.amalw.enums.Gender)[pri:0, instance:com.amalw.tests.RegistrationTest@30f74e79]" started-at="2026-06-01T11:20:25 EDT" name="testRegistration" data-provider="registrationData" finished-at="2026-06-01T11:20:27 EDT" duration-ms="2326" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[User [firstName=John, lastName=Doe, email=25b21718-ae32-483e-9136-332040dd3fd3@example.com, company=ABC]]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[MALE]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRegistration -->
+        <test-method signature="testRegistration(com.amalw.model.User,com.amalw.enums.Gender)[pri:0, instance:com.amalw.tests.RegistrationTest@30f74e79]" started-at="2026-06-01T11:20:25 EDT" name="testRegistration" data-provider="registrationData" finished-at="2026-06-01T11:20:27 EDT" duration-ms="2499" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[User [firstName=Emma, lastName=Stone, email=4aa9f85a-a027-415f-9538-16e3c74123c3@example.com, company=CDE]]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[FEMALE]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRegistration -->
+        <test-method signature="testRegistration(com.amalw.model.User,com.amalw.enums.Gender)[pri:0, instance:com.amalw.tests.RegistrationTest@30f74e79]" started-at="2026-06-01T11:20:25 EDT" name="testRegistration" data-provider="registrationData" finished-at="2026-06-01T11:20:27 EDT" duration-ms="2353" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[User [firstName=Tim, lastName=James, email=0db0505b-9126-4568-92dc-dda79e03d37e@example.com, company=FGE]]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[MALE]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRegistration -->
+        <test-method signature="testRegistration(com.amalw.model.User,com.amalw.enums.Gender)[pri:0, instance:com.amalw.tests.RegistrationTest@30f74e79]" started-at="2026-06-01T11:20:25 EDT" name="testRegistration" data-provider="registrationData" finished-at="2026-06-01T11:20:32 EDT" duration-ms="7470" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[User [firstName=Liam, lastName=Brown, email=ef31183c-b062-4e18-9b9a-26522d4a78c8@example.com, company=JHK]]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[MALE]]>
+              </value>
+            </param>
+          </params>
+          <exception class="com.amalw.exceptions.FrameworkException">
+            <message>
+              <![CDATA[Element not visible after 5 seconds: By.cssSelector: div.result]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[com.amalw.exceptions.FrameworkException: Element not visible after 5 seconds: By.cssSelector: div.result
+at com.amalw.pages.BasePage.isElementDisplayed(BasePage.java:102)
+at com.amalw.pages.RegisterPage.isRegistrationSuccessful(RegisterPage.java:111)
+at com.amalw.tests.RegistrationTest.testRegistration(RegistrationTest.java:50)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:81)
+at org.testng.internal.thread.Async$AsyncTask.run(Async.java:34)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.cssSelector: div.result (tried for 5 second(s) with 500 milliseconds interval)
+Build info: version: '4.23.0', revision: '4df0a231af'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.5'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 148.0.7778.179, chrome: {chromedriverVersion: 148.0.7778.178 (d096af1c9e9..., userDataDir: C:\Users\amalw\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:42108}, goog:processID: 40984, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:42108/devtoo..., se:cdpVersion: 148.0.7778.179, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 6a4e76a274c2e022259a37cf7f22b181
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+at com.amalw.pages.BasePage.isElementDisplayed(BasePage.java:97)
+... 14 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- com.amalw.exceptions.FrameworkException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRegistration -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.amalw.tests.RegistrationTest@30f74e79]" started-at="2026-06-01T11:20:27 EDT" name="tearDown" finished-at="2026-06-01T11:20:27 EDT" duration-ms="197" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.amalw.tests.RegistrationTest@30f74e79]" started-at="2026-06-01T11:20:27 EDT" name="tearDown" finished-at="2026-06-01T11:20:27 EDT" duration-ms="184" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.amalw.tests.RegistrationTest@30f74e79]" started-at="2026-06-01T11:20:27 EDT" name="tearDown" finished-at="2026-06-01T11:20:27 EDT" duration-ms="139" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.amalw.tests.RegistrationTest@30f74e79]" started-at="2026-06-01T11:20:32 EDT" name="tearDown" finished-at="2026-06-01T11:20:32 EDT" duration-ms="107" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.amalw.tests.RegistrationTest -->
+    </test> <!-- ChromeTests -->
+    <test started-at="2026-06-01T11:20:32 EDT" name="FirefoxTests" finished-at="2026-06-01T11:20:44 EDT" duration-ms="11410">
+      <class name="com.amalw.tests.RegistrationTest">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.amalw.tests.RegistrationTest@3d64c581]" started-at="2026-06-01T11:20:32 EDT" name="setUp" finished-at="2026-06-01T11:20:37 EDT" duration-ms="4938" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.amalw.tests.RegistrationTest@3d64c581]" started-at="2026-06-01T11:20:32 EDT" name="setUp" finished-at="2026-06-01T11:20:38 EDT" duration-ms="5425" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.amalw.tests.RegistrationTest@3d64c581]" started-at="2026-06-01T11:20:32 EDT" name="setUp" finished-at="2026-06-01T11:20:35 EDT" duration-ms="2576" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.amalw.tests.RegistrationTest@3d64c581]" started-at="2026-06-01T11:20:32 EDT" name="setUp" finished-at="2026-06-01T11:20:36 EDT" duration-ms="3778" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testRegistration(com.amalw.model.User,com.amalw.enums.Gender)[pri:0, instance:com.amalw.tests.RegistrationTest@3d64c581]" started-at="2026-06-01T11:20:35 EDT" name="testRegistration" data-provider="registrationData" finished-at="2026-06-01T11:20:43 EDT" duration-ms="7891" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[User [firstName=Liam, lastName=Brown, email=b2f953d0-c008-4ed8-b28d-349d64839ab8@example.com, company=JHK]]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[MALE]]>
+              </value>
+            </param>
+          </params>
+          <exception class="com.amalw.exceptions.FrameworkException">
+            <message>
+              <![CDATA[Element not visible after 5 seconds: By.cssSelector: div.result]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[com.amalw.exceptions.FrameworkException: Element not visible after 5 seconds: By.cssSelector: div.result
+at com.amalw.pages.BasePage.isElementDisplayed(BasePage.java:102)
+at com.amalw.pages.RegisterPage.isRegistrationSuccessful(RegisterPage.java:111)
+at com.amalw.tests.RegistrationTest.testRegistration(RegistrationTest.java:50)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:81)
+at org.testng.internal.thread.Async$AsyncTask.run(Async.java:34)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.cssSelector: div.result (tried for 5 second(s) with 500 milliseconds interval)
+Build info: version: '4.23.0', revision: '4df0a231af'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.5'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 148.0, moz:accessibilityChecks: false, moz:buildID: 20260216153405, moz:geckodriverVersion: 0.36.0, moz:headless: true, moz:platformVersion: 10.0, moz:processID: 32184, moz:profile: C:\Users\amalw\AppData\Loca..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: 182e6993-b29d-48dd-900c-1515ba777847
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+at com.amalw.pages.BasePage.isElementDisplayed(BasePage.java:97)
+... 14 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- com.amalw.exceptions.FrameworkException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRegistration -->
+        <test-method signature="testRegistration(com.amalw.model.User,com.amalw.enums.Gender)[pri:0, instance:com.amalw.tests.RegistrationTest@3d64c581]" started-at="2026-06-01T11:20:36 EDT" name="testRegistration" data-provider="registrationData" finished-at="2026-06-01T11:20:39 EDT" duration-ms="2842" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[User [firstName=Tim, lastName=James, email=87f53bbb-bc88-4c4c-96a2-3c34d67d20df@example.com, company=FGE]]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[MALE]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRegistration -->
+        <test-method signature="testRegistration(com.amalw.model.User,com.amalw.enums.Gender)[pri:0, instance:com.amalw.tests.RegistrationTest@3d64c581]" started-at="2026-06-01T11:20:37 EDT" name="testRegistration" data-provider="registrationData" finished-at="2026-06-01T11:20:40 EDT" duration-ms="2426" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[User [firstName=John, lastName=Doe, email=d5e0781c-f167-4e9e-baf0-3b0a41b4f6db@example.com, company=ABC]]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[MALE]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRegistration -->
+        <test-method signature="testRegistration(com.amalw.model.User,com.amalw.enums.Gender)[pri:0, instance:com.amalw.tests.RegistrationTest@3d64c581]" started-at="2026-06-01T11:20:38 EDT" name="testRegistration" data-provider="registrationData" finished-at="2026-06-01T11:20:41 EDT" duration-ms="3482" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[User [firstName=Emma, lastName=Stone, email=4d83aa3e-9be3-444f-81c1-80329ff119c5@example.com, company=CDE]]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[FEMALE]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRegistration -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.amalw.tests.RegistrationTest@3d64c581]" started-at="2026-06-01T11:20:39 EDT" name="tearDown" finished-at="2026-06-01T11:20:41 EDT" duration-ms="2492" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.amalw.tests.RegistrationTest@3d64c581]" started-at="2026-06-01T11:20:40 EDT" name="tearDown" finished-at="2026-06-01T11:20:41 EDT" duration-ms="1752" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.amalw.tests.RegistrationTest@3d64c581]" started-at="2026-06-01T11:20:41 EDT" name="tearDown" finished-at="2026-06-01T11:20:42 EDT" duration-ms="961" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.amalw.tests.RegistrationTest@3d64c581]" started-at="2026-06-01T11:20:43 EDT" name="tearDown" finished-at="2026-06-01T11:20:44 EDT" duration-ms="861" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.amalw.tests.RegistrationTest -->
+    </test> <!-- FirefoxTests -->
+    <test started-at="2026-06-01T11:20:44 EDT" name="EdgeTests" finished-at="2026-06-01T11:20:53 EDT" duration-ms="8789">
+      <class name="com.amalw.tests.RegistrationTest">
+        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:com.amalw.tests.RegistrationTest@4190bc8a]" started-at="2026-06-01T11:20:20 EDT" name="beforeSuite" finished-at="2026-06-01T11:20:20 EDT" duration-ms="32" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeSuite -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.amalw.tests.RegistrationTest@4190bc8a]" started-at="2026-06-01T11:20:44 EDT" name="setUp" finished-at="2026-06-01T11:20:45 EDT" duration-ms="1698" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[edge]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.amalw.tests.RegistrationTest@4190bc8a]" started-at="2026-06-01T11:20:44 EDT" name="setUp" finished-at="2026-06-01T11:20:45 EDT" duration-ms="1561" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[edge]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.amalw.tests.RegistrationTest@4190bc8a]" started-at="2026-06-01T11:20:44 EDT" name="setUp" finished-at="2026-06-01T11:20:45 EDT" duration-ms="1660" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[edge]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.amalw.tests.RegistrationTest@4190bc8a]" started-at="2026-06-01T11:20:44 EDT" name="setUp" finished-at="2026-06-01T11:20:45 EDT" duration-ms="1548" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[edge]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testRegistration(com.amalw.model.User,com.amalw.enums.Gender)[pri:0, instance:com.amalw.tests.RegistrationTest@4190bc8a]" started-at="2026-06-01T11:20:45 EDT" name="testRegistration" data-provider="registrationData" finished-at="2026-06-01T11:20:52 EDT" duration-ms="6955" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[User [firstName=Liam, lastName=Brown, email=5282e106-30cf-4f37-b174-d0d3cbf6bdce@example.com, company=JHK]]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[MALE]]>
+              </value>
+            </param>
+          </params>
+          <exception class="com.amalw.exceptions.FrameworkException">
+            <message>
+              <![CDATA[Element not visible after 5 seconds: By.cssSelector: div.result]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[com.amalw.exceptions.FrameworkException: Element not visible after 5 seconds: By.cssSelector: div.result
+at com.amalw.pages.BasePage.isElementDisplayed(BasePage.java:102)
+at com.amalw.pages.RegisterPage.isRegistrationSuccessful(RegisterPage.java:111)
+at com.amalw.tests.RegistrationTest.testRegistration(RegistrationTest.java:50)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:81)
+at org.testng.internal.thread.Async$AsyncTask.run(Async.java:34)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.cssSelector: div.result (tried for 5 second(s) with 500 milliseconds interval)
+Build info: version: '4.23.0', revision: '4df0a231af'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.5'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 148.0.3967.96, fedcm:accounts: true, goog:processID: 35888, ms:edgeOptions: {debuggerAddress: localhost:1538}, msedge: {msedgedriverVersion: 148.0.3967.96 (9df8cc82dba1..., userDataDir: C:\Users\amalw\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:1538/devtool..., se:cdpVersion: 148.0.3967.96, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 3956c45e5e8c853783b49974ca44f8e9
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+at com.amalw.pages.BasePage.isElementDisplayed(BasePage.java:97)
+... 14 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- com.amalw.exceptions.FrameworkException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRegistration -->
+        <test-method signature="testRegistration(com.amalw.model.User,com.amalw.enums.Gender)[pri:0, instance:com.amalw.tests.RegistrationTest@4190bc8a]" started-at="2026-06-01T11:20:45 EDT" name="testRegistration" data-provider="registrationData" finished-at="2026-06-01T11:20:47 EDT" duration-ms="2073" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[User [firstName=Emma, lastName=Stone, email=bfe7a653-8f75-44e7-bf41-1f0dd9f26ce1@example.com, company=CDE]]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[FEMALE]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRegistration -->
+        <test-method signature="testRegistration(com.amalw.model.User,com.amalw.enums.Gender)[pri:0, instance:com.amalw.tests.RegistrationTest@4190bc8a]" started-at="2026-06-01T11:20:45 EDT" name="testRegistration" data-provider="registrationData" finished-at="2026-06-01T11:20:47 EDT" duration-ms="1993" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[User [firstName=John, lastName=Doe, email=27dff0d6-20f7-4b92-bb1d-b3499e7d95df@example.com, company=ABC]]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[MALE]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRegistration -->
+        <test-method signature="testRegistration(com.amalw.model.User,com.amalw.enums.Gender)[pri:0, instance:com.amalw.tests.RegistrationTest@4190bc8a]" started-at="2026-06-01T11:20:45 EDT" name="testRegistration" data-provider="registrationData" finished-at="2026-06-01T11:20:48 EDT" duration-ms="2069" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[User [firstName=Tim, lastName=James, email=55043521-598a-4cb1-bdc6-11c81037f3cc@example.com, company=FGE]]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[MALE]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRegistration -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.amalw.tests.RegistrationTest@4190bc8a]" started-at="2026-06-01T11:20:47 EDT" name="tearDown" finished-at="2026-06-01T11:20:48 EDT" duration-ms="199" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.amalw.tests.RegistrationTest@4190bc8a]" started-at="2026-06-01T11:20:47 EDT" name="tearDown" finished-at="2026-06-01T11:20:48 EDT" duration-ms="179" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.amalw.tests.RegistrationTest@4190bc8a]" started-at="2026-06-01T11:20:48 EDT" name="tearDown" finished-at="2026-06-01T11:20:48 EDT" duration-ms="144" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.amalw.tests.RegistrationTest@4190bc8a]" started-at="2026-06-01T11:20:52 EDT" name="tearDown" finished-at="2026-06-01T11:20:53 EDT" duration-ms="169" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.amalw.tests.RegistrationTest -->
+    </test> <!-- EdgeTests -->
+  </suite> <!-- ParallelRegistrationSuite -->
+</testng-results>
