@@ -15,14 +15,13 @@ public class RegistrationDataProvider {
 	    public static Object[][] registrationData() {
 
 			List<Object[]> excelData = ExcelUtils.getSheetData("registration-data.xlsx", "Registration");
-
-	        Object[][] data =
-	                new Object[excelData.size()][2];
-
+			
+	        Object[][] data = new Object[excelData.size()][2];
+	                
 	        for (int i = 0; i < excelData.size(); i++) {
-
+	        	
 	            Object[] row = excelData.get(i);
-
+	            
 	            User user =
 	                    UserFactory.buildUser(
 	                            row[0].toString(),

@@ -30,7 +30,8 @@ public class ScreenshotManager {
 	private ScreenshotManager() {
 	}
 
-	// Captures screenshot, creates unique file name and stores it in the base dir under test name
+	// Captures screenshot, creates unique file name and stores it in the base dir
+	// under test name
 	public static String screenCapture(WebDriver driver, String testName, String testClass) {
 
 		// To avoid NullPointerException at runtime

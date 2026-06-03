@@ -15,32 +15,30 @@ import com.amalw.utils.LogManagerUtil;
 
 import io.qameta.allure.Allure;
 
-
-
 /* BaseTest is the foundation for all test classes. All test classes extend the BaseTest */
 
 public class BaseTest {
-	
-	private static final Logger LOGGER=FrameworkLogger.getLogger(BaseTest.class);
+
+	private static final Logger LOGGER = FrameworkLogger.getLogger(BaseTest.class);
 
 	@BeforeSuite(alwaysRun = true)
 	public void beforeSuite() {
 		LogManagerUtil.configureFrameworkLogLevel(ConfigManager.getLogLevel());
-	    ConfigPrinter.logExecutionConfiguration();
+		ConfigPrinter.logExecutionConfiguration();
 	}
 
 	@BeforeMethod(alwaysRun = true)
 	@Parameters("browser")
 	public void setUp(@Optional("chrome") String browser) throws Exception {
-		
+
 		Allure.step("===== TEST SETUP STARTED =====");
 		LOGGER.info("Initializing test execution | browser={}", browser);
-		
+
 		try {
-			
+
 			DriverFactory.initDriver(browser);
 			LOGGER.info("Driver initialization completed successfully");
-			
+
 		} catch (Exception e) {
 			LOGGER.error("Test setup failed", e);
 		}

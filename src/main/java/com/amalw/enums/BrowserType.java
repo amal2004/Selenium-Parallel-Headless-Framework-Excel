@@ -23,12 +23,12 @@ public enum BrowserType {
 
 		} catch (IllegalArgumentException e) {
 
-			String supportedBrowsers = Arrays.stream(BrowserType.values())
-					.map(Enum::name).collect(Collectors.joining(", "));
-					
+			String supportedBrowsers = Arrays.stream(BrowserType.values()).map(Enum::name)
+					.collect(Collectors.joining(", "));
+
 			// Handle invalid browser values
-			throw new FrameworkException
-			(String.format("Invalid browser: '%s'. Supported browsers: [%s]", value, supportedBrowsers), e);
+			throw new FrameworkException(
+					String.format("Invalid browser: '%s'. Supported browsers: [%s]", value, supportedBrowsers), e);
 
 		}
 	}

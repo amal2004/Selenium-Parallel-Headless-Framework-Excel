@@ -14,126 +14,122 @@ import com.amalw.logging.FrameworkLogger;
 /* DriverFactory creates and manages thread-safe WebDriver instances */
 public final class DriverFactory {
 
-    private static final ThreadLocal < WebDriver > TLDRIVER = new ThreadLocal < > ();
-    private static final Logger LOGGER = FrameworkLogger.getLogger(DriverFactory.class);
-    private static final int pageLoadTimeout = ConfigManager.getInt("pageLoadTimeout", 60);
+	private static final ThreadLocal<WebDriver> TLDRIVER = new ThreadLocal<>();
+	private static final Logger LOGGER = FrameworkLogger.getLogger(DriverFactory.class);
+	private static final int pageLoadTimeout = ConfigManager.getInt("pageLoadTimeout", 60);
 
-    private DriverFactory() {}
+	private DriverFactory() {
+	}
 
-    // Returns the WebDriver instance associated with the current thread
-    public static WebDriver getDriver() {
-    	
-        if (TLDRIVER.get() == null) {
-            throw new FrameworkException("WebDriver is not initialized for current thread");
-        }
-        return TLDRIVER.get();
-    }
+	// Returns the WebDriver instance associated with the current thread
+	public static WebDriver getDriver() {
 
-    // Initializes WebDriver based on the specified browser type
-    public static void initDriver(String browserName) {
+		if (TLDRIVER.get() == null) {
+			throw new FrameworkException("WebDriver is not initialized for current thread");
+		}
+		return TLDRIVER.get();
+	}
 
-        if (TLDRIVER.get() != null) {
-            LOGGER.warn("WebDriver already exists for thread: {}", Thread.currentThread().getId());
-            return;
-        }
+	// Initializes WebDriver based on the specified browser type
+	public static void initDriver(String browserName) {
 
-        long startTime = System.currentTimeMillis();
+		if (TLDRIVER.get() != null) {
+			LOGGER.warn("WebDriver already exists for thread: {}", Thread.currentThread().getId());
+			return;
+		}
 
-        try {
+		long startTime = System.currentTimeMillis();
 
-            // If no browser name is passed, get it from properties file
-            String browserValue = (browserName == null || browserName.isBlank()) ? ConfigManager.get("browser") :
-                browserName;
+		try {
 
-            BrowserType browser = BrowserType.from(browserValue);
+			// If no browser name is passed, get it from properties file
+			String browserValue = (browserName == null || browserName.isBlank()) ? ConfigManager.get("browser")
+					: browserName;
 
-            boolean headless = ConfigManager.getBoolean("headless", false);
+			BrowserType browser = BrowserType.from(browserValue);
 
-            LOGGER.info(
-                "Execution environment | os={} | java={} | browser={} | headless={} | thread={}",
-                System.getProperty("os.name"),
-                System.getProperty("java.version"),
-                browser,
-                headless,
-                Thread.currentThread().getId()
-            );
+			boolean headless = ConfigManager.getBoolean("headless", false);
 
-            MDC.put("browser", browser.name());
-            MDC.put("threadId", String.valueOf(Thread.currentThread().getId()));
+			LOGGER.info("Execution environment | os={} | java={} | browser={} | headless={} | thread={}",
+					System.getProperty("os.name"), System.getProperty("java.version"), browser, headless,
+					Thread.currentThread().getId());
 
-            LOGGER.info("Initializing WebDriver | browser={} | headless={} | thread={}", browser, headless,
-                Thread.currentThread().getId());
+			MDC.put("browser", browser.name());
+			MDC.put("threadId", String.valueOf(Thread.currentThread().getId()));
 
-            WebDriver driver = BrowserManager.createDriver(browser, headless);
+			LOGGER.info("Initializing WebDriver | browser={} | headless={} | thread={}", browser, headless,
+					Thread.currentThread().getId());
 
-            configureDriver(driver, headless);
+			WebDriver driver = BrowserManager.createDriver(browser, headless);
 
-            TLDRIVER.set(driver);
+			configureDriver(driver, headless);
 
-            long duration = System.currentTimeMillis() - startTime;
+			TLDRIVER.set(driver);
 
-            LOGGER.info("WebDriver initialized successfully in {} ms", duration);
+			long duration = System.currentTimeMillis() - startTime;
 
-        } catch (Exception e) {
+			LOGGER.info("WebDriver initialized successfully in {} ms", duration);
 
-            LOGGER.error("Failed to initialize WebDriver", e);
-            throw new FrameworkException("Driver initialization failed: " + e);
-        }
+		} catch (Exception e) {
 
-    }
+			LOGGER.error("Failed to initialize WebDriver", e);
+			throw new FrameworkException("Driver initialization failed: " + e);
+		}
 
-    private static void configureDriver(WebDriver driver, boolean headless) {
+	}
 
-        long start = System.currentTimeMillis();
+	private static void configureDriver(WebDriver driver, boolean headless) {
 
-        LOGGER.debug("Applying browser configurations");
+		long start = System.currentTimeMillis();
 
-        try {
-            if (!headless) {
-                LOGGER.debug("Maximizing browser window");
-                driver.manage().window().maximize();
-            }
+		LOGGER.debug("Applying browser configurations");
 
-            // Disable implicit wait to avoid the conflicts
-            driver.manage().timeouts().implicitlyWait(Duration.ZERO);
-            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageLoadTimeout));
+		try {
+			if (!headless) {
+				LOGGER.debug("Maximizing browser window");
+				driver.manage().window().maximize();
+			}
 
-            LOGGER.debug("Configured driver timeouts | implicitWait=0 | pageLoadTimeout={}s", pageLoadTimeout);
+			// Disable implicit wait to avoid the conflicts
+			driver.manage().timeouts().implicitlyWait(Duration.ZERO);
+			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageLoadTimeout));
 
-            long duration = System.currentTimeMillis() - start;
-            LOGGER.debug("Driver configuration completed in {} ms", duration);
+			LOGGER.debug("Configured driver timeouts | implicitWait=0 | pageLoadTimeout={}s", pageLoadTimeout);
 
-        } catch (Exception e) {
-            LOGGER.error("Failed to configure browser session", e);
-            throw new FrameworkException("Driver configuration failed");
-        }
+			long duration = System.currentTimeMillis() - start;
+			LOGGER.debug("Driver configuration completed in {} ms", duration);
 
-    }
+		} catch (Exception e) {
+			LOGGER.error("Failed to configure browser session", e);
+			throw new FrameworkException("Driver configuration failed");
+		}
 
-    // Quits the driver and removes it from ThreadLocal storage
-    public static void quitDriver() {
+	}
 
-        WebDriver driver = TLDRIVER.get();
+	// Quits the driver and removes it from ThreadLocal storage
+	public static void quitDriver() {
 
-        if (driver == null) {
-            LOGGER.warn("Attempted to quit WebDriver but no session exists | thread={}",
-                Thread.currentThread().getId());
-            return;
-        }
+		WebDriver driver = TLDRIVER.get();
 
-        try {
-            LOGGER.info("Closing WebDriver session | thread={}", Thread.currentThread().getId());
-            driver.quit();
-            LOGGER.info("WebDriver session closed successfully");
+		if (driver == null) {
+			LOGGER.warn("Attempted to quit WebDriver but no session exists | thread={}",
+					Thread.currentThread().getId());
+			return;
+		}
 
-        } catch (Exception e) {
-            LOGGER.error("Failed to close WebDriver session", e);
+		try {
+			LOGGER.info("Closing WebDriver session | thread={}", Thread.currentThread().getId());
+			driver.quit();
+			LOGGER.info("WebDriver session closed successfully");
 
-        } finally {
+		} catch (Exception e) {
+			LOGGER.error("Failed to close WebDriver session", e);
 
-            TLDRIVER.remove();
-            MDC.clear();
-            LOGGER.debug("ThreadLocal and MDC cleared");
-        }
-    }
+		} finally {
+
+			TLDRIVER.remove();
+			MDC.clear();
+			LOGGER.debug("ThreadLocal and MDC cleared");
+		}
+	}
 }

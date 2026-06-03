@@ -37,9 +37,9 @@ public class ConfigManager {
 	}
 
 	public static String getLogLevel() {
-	    return get("logLevel", "INFO");
+		return get("logLevel", "INFO");
 	}
-	
+
 	// Get required property by key
 	public static String get(String key) {
 
@@ -84,7 +84,6 @@ public class ConfigManager {
 		LOGGER.info("Resolved config | key={} | value={} | source=DEFAULT_VALUE", key, defaultValue);
 		return defaultValue.trim();
 	}
-	
 
 	// Get boolean property with default value (ex: headless=true)
 	public static boolean getBoolean(String key, boolean defaultValue) {
@@ -96,7 +95,7 @@ public class ConfigManager {
 
 		try {
 			return Integer.parseInt(get(key, String.valueOf(defaultValue)));
-			
+
 		} catch (NumberFormatException exception) {
 			LOGGER.error("Invalid integer config value for key: {}", key);
 			throw new FrameworkException("Invalid integer value for key: " + key);

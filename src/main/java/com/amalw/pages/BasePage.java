@@ -17,7 +17,7 @@ import java.time.Duration;
 
 public abstract class BasePage {
 
-	//private WebDriverWait wait;
+	// private WebDriverWait wait;
 	private static final Logger LOGGER = FrameworkLogger.getLogger(BasePage.class);
 	private static final int DEFAULT_TIMEOUT = 15;
 
@@ -26,18 +26,17 @@ public abstract class BasePage {
 	}
 
 	protected abstract void validatePageLoaded();
-	
+
 	// Create WebDriverWait using default timeout
 	protected WebDriverWait getWait() {
 		return new WebDriverWait(getDriver(), Duration.ofSeconds(DEFAULT_TIMEOUT));
 	}
 
-
 	protected void click(By locator) {
 		try {
 			LOGGER.debug("Clicking element: {}", locator);
 			waitForClickable(locator).click();
-			
+
 		} catch (Exception e) {
 			LOGGER.error("Click failed for locator: {}", locator, e);
 			throw new FrameworkException("Unable to click element: " + locator, e);
@@ -59,7 +58,6 @@ public abstract class BasePage {
 			throw new FrameworkException("Unable to type into element: " + locator, e);
 		}
 	}
-	
 
 	protected String getText(By locator) {
 		try {
@@ -72,7 +70,6 @@ public abstract class BasePage {
 			throw new FrameworkException("Unable to retrieve text from element: " + locator, e);
 		}
 	}
-	
 
 	protected void navigateTo(String url) {
 
@@ -87,35 +84,34 @@ public abstract class BasePage {
 		}
 	}
 
-	
 	// Check if element is displayed within given timeout
 	protected boolean isElementDisplayed(By locator, int timeoutSeconds) {
-		
-		LOGGER.debug("Checking visibility of element: {} | timeout={}s",locator,timeoutSeconds);       
+
+		LOGGER.debug("Checking visibility of element: {} | timeout={}s", locator, timeoutSeconds);
 		try {
 			new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutSeconds))
 					.until(ExpectedConditions.visibilityOfElementLocated(locator));
 			return true;
-			
+
 		} catch (TimeoutException e) {
-			
+
 			throw new FrameworkException(
 					String.format("Element not visible after %s seconds: %s", timeoutSeconds, locator), e);
 		}
 	}
-
 
 	private WebElement waitForVisible(By locator) {
 		try {
 			LOGGER.debug("Waiting for element visibility: {}", locator);
 
 			return getWait().until(ExpectedConditions.visibilityOfElementLocated(locator));
-			
+
 		} catch (TimeoutException e) {
-			throw new FrameworkException("Element is not visible after: " + DEFAULT_TIMEOUT + " seconds: " + locator, e);
+			throw new FrameworkException("Element is not visible after: " + DEFAULT_TIMEOUT + " seconds: " + locator,
+					e);
 		}
 	}
-	
+
 	private WebElement waitForClickable(By locator) {
 
 		try {
@@ -127,43 +123,31 @@ public abstract class BasePage {
 		}
 
 	}
-	
-	
-	protected WebElement waitForVisibility(
-            By locator,
-            int timeoutInSeconds) {
 
-		LOGGER.debug(
-                "Waiting for visibility of element: {}",
-                locator);
+	protected WebElement waitForVisibility(By locator, int timeoutInSeconds) {
 
-        try {
+		LOGGER.debug("Waiting for visibility of element: {}", locator);
 
-            WebDriverWait wait =
-                    new WebDriverWait(
-                            getDriver(),
-                            Duration.ofSeconds(timeoutInSeconds));
+		try {
 
-            wait.pollingEvery(Duration.ofMillis(500));
+			WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutInSeconds));
 
-            wait.ignoring(StaleElementReferenceException.class);
-            wait.ignoring(NoSuchElementException.class);
+			wait.pollingEvery(Duration.ofMillis(500));
 
-            return wait.until(
-                    ExpectedConditions
-                            .visibilityOfElementLocated(locator));
+			wait.ignoring(StaleElementReferenceException.class);
+			wait.ignoring(NoSuchElementException.class);
 
-        } catch (TimeoutException exception) {
+			return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 
-            String message = String.format(
-                    "Element was not visible after %d seconds. Locator: %s",
-                    timeoutInSeconds,
-                    locator);
+		} catch (TimeoutException exception) {
 
-            LOGGER.error(message);
+			String message = String.format("Element was not visible after %d seconds. Locator: %s", timeoutInSeconds,
+					locator);
 
-            throw new TimeoutException(message, exception);
-        }
-    }
-	
+			LOGGER.error(message);
+
+			throw new TimeoutException(message, exception);
+		}
+	}
+
 }
