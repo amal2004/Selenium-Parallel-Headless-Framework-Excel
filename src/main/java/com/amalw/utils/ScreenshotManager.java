@@ -6,8 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -18,62 +18,55 @@ import com.amalw.config.ConfigManager;
 import com.amalw.exceptions.FrameworkException;
 import com.amalw.logging.FrameworkLogger;
 
-//ScreenshotManager is a utility class responsible for capturing and storing
-//browser screenshots during test execution.
-
-public class ScreenshotManager {
+/** Takes browser screenshots and saves them on disk. */
+public final class ScreenshotManager {
 
 	private static final Logger LOGGER = FrameworkLogger.getLogger(ScreenshotManager.class);
-	private static final String BASE_DIR = ConfigManager.get("screenshot.dir", "screenshots");
-	private static final String TIMESTAMP_PATTERN = "yyyyMMdd_HHmmss_SSS";
+	private static final String SCREENSHOT_DIR = ConfigManager.get("screenshot.dir", "screenshots");
+	private static final DateTimeFormatter TIMESTAMP_FORMAT = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss_SSS");
 
 	private ScreenshotManager() {
 	}
 
-	// Captures screenshot, creates unique file name and stores it in the base dir
-	// under test name
-	public static String screenCapture(WebDriver driver, String testName, String testClass) {
+	/**
+	 * Saves a screenshot as {screenshot.dir}/{testClass}/{testName}_{timestamp}.png
+	 *
+	 * @return the full path of the saved screenshot
+	 */
+	public static String screenCapture(WebDriver driver, String testClass, String testName) {
 
-		// To avoid NullPointerException at runtime
 		if (driver == null) {
-
 			LOGGER.error("Screenshot capture skipped because WebDriver is null");
-
 			throw new FrameworkException("Cannot capture screenshot because WebDriver is null");
 		}
 
-		// Unique timestamp
-		String timeStamp = new SimpleDateFormat(TIMESTAMP_PATTERN).format(new Date());
-
-		String sanitizedTestName = sanitizeFileName(testName);
-
-		String fileName = sanitizedTestName + "_" + timeStamp + ".png";
-
-		Path directoryPath = Paths.get(BASE_DIR, testClass);
-
-		Path destinationPath = directoryPath.resolve(fileName);
+		Path folder = Paths.get(SCREENSHOT_DIR, testClass);
+		Path destination = folder.resolve(buildFileName(testName));
 
 		try {
+			Files.createDirectories(folder);
 
-			LOGGER.debug("Creating screenshot directory: {}", directoryPath);
-			Files.createDirectories(directoryPath);
+			LOGGER.info("Capturing screenshot | test={} | file={}", testName, destination.getFileName());
+			File tempFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
-			LOGGER.info("Capturing screenshot | test={} | file={}", testName, fileName);
-			File sourceFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+			Files.copy(tempFile.toPath(), destination, StandardCopyOption.REPLACE_EXISTING);
+			LOGGER.info("Screenshot saved successfully: {}", destination.toAbsolutePath());
 
-			Files.copy(sourceFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
-			LOGGER.info("Screenshot saved successfully: {}", destinationPath.toAbsolutePath());
-
-			return destinationPath.toAbsolutePath().toString();
+			return destination.toAbsolutePath().toString();
 
 		} catch (IOException e) {
-
 			LOGGER.error("Failed to save screenshot for test: {}", testName, e);
-			throw new FrameworkException("Failed to capture screenshot: " + testName);
+			throw new FrameworkException("Failed to capture screenshot: " + testName, e);
 		}
 	}
 
-	// Remove invalid filename characters.
+	// The timestamp keeps the name unique when the same test fails more than once
+	private static String buildFileName(String testName) {
+		String timestamp = LocalDateTime.now().format(TIMESTAMP_FORMAT);
+		return sanitizeFileName(testName) + "_" + timestamp + ".png";
+	}
+
+	// Replaces characters that are not allowed in file names
 	private static String sanitizeFileName(String name) {
 		return name.replaceAll("[^a-zA-Z0-9-_\\.]", "_");
 	}

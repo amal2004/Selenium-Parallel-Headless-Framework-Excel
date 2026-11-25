@@ -1,6 +1,6 @@
 package com.amalw.exceptions;
 
-/* Custom runtime exception used handle framework errors */
+/** Runtime exception used for all errors raised by the framework. */
 public class FrameworkException extends RuntimeException {
 
 	public FrameworkException(String message) {

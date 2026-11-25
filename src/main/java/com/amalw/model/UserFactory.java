@@ -2,11 +2,15 @@ package com.amalw.model;
 
 import java.util.UUID;
 
-public class UserFactory {
+/** Builds User objects for tests. */
+public final class UserFactory {
+
+	private static final String EMAIL_DOMAIN = "@example.com";
 
 	private UserFactory() {
 	}
 
+	/** Creates a user with a random email, because the site rejects duplicate emails. */
 	public static User buildUser(String firstName, String lastName, String company, String password,
 			String confirmPassword) {
 
@@ -14,7 +18,7 @@ public class UserFactory {
 
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
-		user.setEmail(generateEmail());
+		user.setEmail(generateUniqueEmail());
 		user.setCompany(company);
 		user.setPassword(password);
 		user.setConfirmPassword(confirmPassword);
@@ -22,8 +26,7 @@ public class UserFactory {
 		return user;
 	}
 
-	private static String generateEmail() {
-
-		return UUID.randomUUID() + "@example.com";
+	private static String generateUniqueEmail() {
+		return UUID.randomUUID() + EMAIL_DOMAIN;
 	}
 }

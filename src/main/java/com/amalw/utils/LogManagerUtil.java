@@ -5,13 +5,18 @@ import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 
-public class LogManagerUtil {
+/** Changes the log level of the framework at runtime (for example from config.properties). */
+public final class LogManagerUtil {
 
-	public static void configureFrameworkLogLevel(String level) {
+	private static final String FRAMEWORK_PACKAGE = "com.amalw";
 
-		Logger logger = (Logger) LoggerFactory.getLogger("com.amalw");
-
-		logger.setLevel(Level.toLevel(level));
+	private LogManagerUtil() {
 	}
 
+	/** Sets the level for every logger under com.amalw. Example values: DEBUG, INFO, WARN. */
+	public static void configureFrameworkLogLevel(String level) {
+
+		Logger frameworkLogger = (Logger) LoggerFactory.getLogger(FRAMEWORK_PACKAGE);
+		frameworkLogger.setLevel(Level.toLevel(level));
+	}
 }

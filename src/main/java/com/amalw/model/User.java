@@ -1,5 +1,6 @@
 package com.amalw.model;
 
+/** Holds the data needed to register a new user. */
 public class User {
 
 	private String firstName;
@@ -57,10 +58,10 @@ public class User {
 		this.confirmPassword = confirmPassword;
 	}
 
+	// Passwords are left out on purpose so they never end up in logs or reports
 	@Override
 	public String toString() {
 		return "User [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", company=" + company
 				+ "]";
 	}
-
 }

@@ -4,7 +4,8 @@ import org.slf4j.Logger;
 
 import com.amalw.logging.FrameworkLogger;
 
-public class ConfigPrinter {
+/** Prints the active execution settings at the start of the run, which helps when debugging. */
+public final class ConfigPrinter {
 
 	private static final Logger LOGGER = FrameworkLogger.getLogger(ConfigPrinter.class);
 
@@ -12,6 +13,12 @@ public class ConfigPrinter {
 	}
 
 	public static void logExecutionConfiguration() {
+
+		String environment = ConfigManager.get("environment", "qa");
+		String browser = ConfigManager.get("browser", "chrome");
+		boolean headless = ConfigManager.getBoolean("headless", false);
+		boolean grid = ConfigManager.getBoolean("grid", false);
+		int retries = ConfigManager.getInt("retries", 0);
 
 		LOGGER.info("""
 
@@ -22,11 +29,6 @@ public class ConfigPrinter {
 				grid={}
 				retries={}
 				===========================================================
-				""",
-
-				ConfigManager.get("environment", "qa"), ConfigManager.get("browser", "chrome"),
-				ConfigManager.getBoolean("headless", false), ConfigManager.getBoolean("grid", false),
-				ConfigManager.getInt("retries", 0));
-
+				""", environment, browser, headless, grid, retries);
 	}
 }

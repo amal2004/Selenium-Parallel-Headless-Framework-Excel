@@ -5,31 +5,32 @@ import java.util.stream.Collectors;
 
 import com.amalw.exceptions.FrameworkException;
 
-/* BrowserType defines the supported browser options */
+/** Browsers supported by the framework. */
 public enum BrowserType {
 
 	CHROME, FIREFOX, EDGE;
 
-	// Converts string input into corresponding BrowserType enum
+	/**
+	 * Converts a text value such as "chrome" or " Firefox " into a BrowserType.
+	 *
+	 * @throws FrameworkException if the value is empty or not a supported browser
+	 */
 	public static BrowserType from(String value) {
 
-		if (value == null || value.trim().isEmpty()) {
+		if (value == null || value.isBlank()) {
 			throw new FrameworkException("Browser value is missing in config");
 		}
 
 		try {
-			// Convert string to uppercase and map to enum
 			return BrowserType.valueOf(value.trim().toUpperCase());
 
 		} catch (IllegalArgumentException e) {
-
-			String supportedBrowsers = Arrays.stream(BrowserType.values()).map(Enum::name)
+			String supportedBrowsers = Arrays.stream(values())
+					.map(Enum::name)
 					.collect(Collectors.joining(", "));
 
-			// Handle invalid browser values
 			throw new FrameworkException(
 					String.format("Invalid browser: '%s'. Supported browsers: [%s]", value, supportedBrowsers), e);
-
 		}
 	}
 }

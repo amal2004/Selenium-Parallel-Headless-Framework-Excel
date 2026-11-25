@@ -15,8 +15,7 @@ import com.amalw.utils.LogManagerUtil;
 
 import io.qameta.allure.Allure;
 
-/* BaseTest is the foundation for all test classes. All test classes extend the BaseTest */
-
+/** Parent class of all test classes. Starts a browser before each test and closes it after. */
 public class BaseTest {
 
 	private static final Logger LOGGER = FrameworkLogger.getLogger(BaseTest.class);
@@ -27,20 +26,21 @@ public class BaseTest {
 		ConfigPrinter.logExecutionConfiguration();
 	}
 
+	// The "browser" parameter comes from testng.xml. Chrome is used when it is missing.
 	@BeforeMethod(alwaysRun = true)
 	@Parameters("browser")
-	public void setUp(@Optional("chrome") String browser) throws Exception {
+	public void setUp(@Optional("chrome") String browser) {
 
 		Allure.step("===== TEST SETUP STARTED =====");
 		LOGGER.info("Initializing test execution | browser={}", browser);
 
 		try {
-
 			DriverFactory.initDriver(browser);
 			LOGGER.info("Driver initialization completed successfully");
 
 		} catch (Exception e) {
 			LOGGER.error("Test setup failed", e);
+			throw e;
 		}
 	}
 
@@ -49,14 +49,7 @@ public class BaseTest {
 
 		LOGGER.info("========== TEST TEARDOWN STARTED ==========");
 
-		try {
-			DriverFactory.quitDriver();
-			LOGGER.info("Driver cleanup completed successfully");
-
-		} catch (Exception e) {
-			LOGGER.error("Error during test teardown", e);
-		}
-
+		DriverFactory.quitDriver();
+		LOGGER.info("Driver cleanup completed");
 	}
-
 }

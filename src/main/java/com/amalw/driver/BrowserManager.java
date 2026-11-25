@@ -15,107 +15,92 @@ import com.amalw.logging.FrameworkLogger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+/** Creates the browser instances (Chrome, Firefox, Edge) with their options. */
 public final class BrowserManager {
 
-	private static final Logger logger = FrameworkLogger.getLogger(BrowserManager.class);
+	private static final Logger LOGGER = FrameworkLogger.getLogger(BrowserManager.class);
+
+	// Chrome and Edge are both Chromium based, so they share the headless arguments
+	private static final String[] CHROMIUM_HEADLESS_ARGS = { "--headless=new", "--window-size=1920,1080",
+			"--disable-gpu", "--no-sandbox", "--disable-dev-shm-usage" };
+
+	private static final String[] FIREFOX_HEADLESS_ARGS = { "-headless", "--width=1920", "--height=1080" };
+
+	// Driver binaries are downloaded once here, not every time a driver is created
+	static {
+		LOGGER.info("Setting up WebDriver binaries (Chrome, Firefox, Edge)");
+		WebDriverManager.chromedriver().setup();
+		WebDriverManager.firefoxdriver().setup();
+		WebDriverManager.edgedriver().setup();
+		LOGGER.info("WebDriver binaries setup completed");
+	}
 
 	private BrowserManager() {
 	}
 
-	// This will avoid multiple WebDriverManager calls within the switch block
-	static {
-		logger.info("Setting up WebDriver binaries (Chrome, Firefox, Edge)");
-		WebDriverManager.chromedriver().setup();
-		WebDriverManager.firefoxdriver().setup();
-		WebDriverManager.edgedriver().setup();
-		logger.info("WebDriver binaries setup completed");
-	}
-
-	// Create driver based on browser type using values from enums
+	/** Launches a new browser of the requested type. */
 	public static WebDriver createDriver(BrowserType browserType, boolean headless) {
 
 		long startTime = System.currentTimeMillis();
 
-		logger.info("=== DRIVER CREATION STARTED ===");
-		logger.info("Requested browser: {} | headless={}", browserType, headless);
+		LOGGER.info("Requested browser: {} | headless={}", browserType, headless);
 
 		try {
-			WebDriver driver;
+			WebDriver driver = switch (browserType) {
+			case CHROME -> new ChromeDriver(chromeOptions(headless));
+			case FIREFOX -> new FirefoxDriver(firefoxOptions(headless));
+			case EDGE -> new EdgeDriver(edgeOptions(headless));
+			};
 
-			switch (browserType) {
-
-			case CHROME:
-				logger.info("Launching ChromeDriver");
-				driver = new ChromeDriver(chromeOptions(headless));
-				break;
-
-			case FIREFOX:
-				logger.info("Launching FirefoxDriver");
-				driver = new FirefoxDriver(firefoxOptions(headless));
-				break;
-
-			case EDGE:
-				logger.info("Launching EdgeDriver");
-				driver = new EdgeDriver(edgeOptions(headless));
-				break;
-
-			default:
-				logger.error("Unsupported browser type received: {}", browserType);
-				throw new FrameworkException("Unsupported browser: " + browserType);
-			}
-
-			long duration = System.currentTimeMillis() - startTime;
-
-			logger.info("Browser launched successfully: {} in {} ms", browserType, duration);
-			logger.info("=== DRIVER CREATION COMPLETED ===");
+			LOGGER.info("Browser launched successfully: {} in {} ms", browserType,
+					System.currentTimeMillis() - startTime);
 
 			return driver;
 
 		} catch (Exception e) {
-
-			logger.error("Driver creation failed for browser: {}", browserType, e);
-			throw new FrameworkException("Failed to create driver: " + browserType);
+			LOGGER.error("Driver creation failed for browser: {}", browserType, e);
+			throw new FrameworkException("Failed to create driver: " + browserType, e);
 		}
 	}
 
-	// Configure Chrome options
 	private static ChromeOptions chromeOptions(boolean headless) {
 
-		logger.debug("Configuring ChromeOptions | headless={}", headless);
+		LOGGER.debug("Configuring ChromeOptions | headless={}", headless);
 
 		ChromeOptions options = new ChromeOptions();
+
 		if (headless) {
-			options.addArguments("--headless=new", "--window-size=1920,1080", "--disable-gpu", "--no-sandbox",
-					"--disable-dev-shm-usage");
+			options.addArguments(CHROMIUM_HEADLESS_ARGS);
 		}
 		options.addArguments("--disable-notifications", "--start-maximized");
+
 		return options;
 	}
 
-	// Configure Firefox options
 	private static FirefoxOptions firefoxOptions(boolean headless) {
 
-		logger.debug("Configuring FirefoxOptions | headless={}", headless);
+		LOGGER.debug("Configuring FirefoxOptions | headless={}", headless);
 
 		FirefoxOptions options = new FirefoxOptions();
 
 		if (headless) {
-			options.addArguments("-headless", "--width=1920", "--height=1080");
+			options.addArguments(FIREFOX_HEADLESS_ARGS);
 		}
 
 		return options;
 	}
 
-	// Configure Edge options
 	private static EdgeOptions edgeOptions(boolean headless) {
 
-		logger.debug("Configuring EdgeOptions | headless={}", headless);
+		LOGGER.debug("Configuring EdgeOptions | headless={}", headless);
 
 		EdgeOptions options = new EdgeOptions();
+
 		if (headless) {
-			options.addArguments("--headless=new", "--window-size=1920,1080", "--disable-gpu", "--no-sandbox",
-					"--disable-dev-shm-usage", "--disable-notifications");
+			options.addArguments(CHROMIUM_HEADLESS_ARGS);
+			options.addArguments("--disable-notifications");
 		}
+
 		return options;
 	}
 }
